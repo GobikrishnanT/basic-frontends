@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Wepsite Loading</title>
+        <style>
+            *{
+                padding: 0;
+                margin: 0;
+                box-sizing: border-box;
+                font-family: Verdana, Geneva, Tahoma, sans-serif;
+            }
+            .main-container {
+                height: 98vh;
+                display:flex;
+                align-items: center;
+                justify-content: center;
+            }
+            form {
+                width : 30%;
+                height : 50%;
+                padding: 10px;
+                border: 2px solid black;
+                border-radius: 5px;
+            }
+            form div:nth-child(1) {
+                margin-bottom: 10px;
+            }
+            form div:nth-child(2) span {
+                font-weight: bold;
+                display: block;
+                text-align: center;
+            }
+            form div:last-child input {
+                margin-top: 10px;
+                border-radius: 5px;
+                font-weight: bold;
+            }
+            label {
+                margin-bottom: 10px;
+                display: block;
+                font-weight: bolder;
+            }
+            input {
+                width: 100%;
+                height: 50px;
+                border-radius: 5px;
+                outline: none;
+                border: 1px solid black;
+                padding-left: 10px;
+            }
+        </style>
+    </head>
+    <body>
+        
+        <div class="main-container">
+            <form onsubmit="onSubmit(event)">
+                <div>
+                    <label for="userName">User name</label>
+                    <input type="text" name="userName" id="userName" required placeholder="John">
+                </div>
+                <div>
+                    <span class="userIdShower">User Id Generating ....</span>
+                </div>
+                <div>
+                    <label for="submit-btn"></label>
+                    <input type="submit" value="Get in">
+                </div>
+            </form>
+        </div>
+
+        <script>
+            function onSubmit(event) {
+                event.preventDefault();
+                const userName = event.target[0].value;
+                console.log(location.origin + "/index.html?userName=" + userName + "&userId=" + window.userId);
+                location.href = location.origin + "/index.html?userName=" + userName + "&userId=" + window.userId;
+            }
+            function init() {
+                const randomNumberBt_1_10 = Math.floor((Math.random() * 10) + 1);
+                const elem = document.getElementsByClassName("userIdShower")[0];
+                elem.textContent = randomNumberBt_1_10;
+                window.userId = randomNumberBt_1_10;
+                document.title = "Json - Login";
+            }
+            init();
+        </script>
+    </body>
+</html>
